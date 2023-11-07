@@ -37,8 +37,8 @@ function getStringLength(value) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
 
 /**
@@ -146,8 +146,13 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  if (str.indexOf(value) === -1) {
+    return str;
+  }
+  return str
+    .substring(0, str.indexOf(value))
+    .concat(str.substring(str.indexOf(value) + value.length, str.length));
 }
 
 /**
@@ -162,8 +167,13 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  if (str.lastIndexOf(value) === -1) {
+    return str;
+  }
+  return str
+    .substring(0, str.lastIndexOf(value))
+    .concat(str.substring(str.lastIndexOf(value) + value.length, str.length));
 }
 
 /**
@@ -178,8 +188,15 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  let output = 0;
+  if (!str) {
+    return output;
+  }
+  for (let i = 0; i < str.length; i += 1) {
+    output += str.charCodeAt(i);
+  }
+  return output;
 }
 
 /**
@@ -225,8 +242,12 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  return ''
+    .concat(minutes)
+    .padStart(2, '0')
+    .concat(':')
+    .concat(''.concat(seconds).padStart(2, '0'));
 }
 
 /**
@@ -270,8 +291,8 @@ function orderAlphabetically(str) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  return str.includes(substring);
 }
 
 /**
